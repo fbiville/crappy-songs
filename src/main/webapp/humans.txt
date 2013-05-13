@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Florent Biville -- Developer -- @fbiville
+
+# THANKS
+
+    Guillaume Hurbault
+
+# TECHNOLOGY COLOPHON
+
+    Spring MVC, Thymeleaf
+    Spring Data

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta th:substituteby="fragments/commonMeta" />
+        <meta th:substituteby="fragments/commonStyle" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div th:substituteby="fragments/nav" />
+            <div class="row-fluid">
+                <div class="offset1 span10">
+                    <div class="hero-unit">
+                        <h1>Crappy song!</h1>
+                        <blockquote th:utext="${video}?: '&lt;p&gt;No video yet. Submit one!&lt;/p&gt;'">
+                            Video... is loading.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div th:substituteby="fragments/footer" />
+        </div>
+    </body>
+</html>
