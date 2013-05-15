@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +41,7 @@ public class VideoController {
         return new ModelAndView("index");
     }
 
-    @RequestMapping(value = "/watch/{id}", method = GET)
+    @RequestMapping(value = "/video/{id}", method = GET)
     public ModelAndView watch(@PathVariable long id) {
         Video video = videosRepository.findOne(id);
         if (video == null) {
@@ -51,22 +53,27 @@ public class VideoController {
         return form;
     }
 
-    @RequestMapping(value = "/next", method = GET)
-    public ModelAndView watchRandom() {
-        ModelAndView form = new ModelAndView("watch");
+    @RequestMapping(value = "/video/next", method = GET)
+    public void watchRandom(HttpServletResponse response) throws IOException {
         Iterable<Video> all = videosRepository.findAll();
         int count = size(all);
-        form.addObject("video", count == 0 ?
-            null : getContents(get(all, new Random().nextInt(count))));
-        return form;
+        if (count == 0) {
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        }
+        else {
+            Video video = get(all, new Random().nextInt(count));
+            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+            response.addHeader("Location", "/video/" + video.getId().longValue());
+        }
+
     }
 
-    @RequestMapping(value = "/submit", method = GET)
+    @RequestMapping(value = "/video", method = GET)
     public ModelAndView form(@ModelAttribute("videoCommand") Video video) {
         return new ModelAndView("form");
     }
 
-    @RequestMapping(value = "/submit", method = POST)
+    @RequestMapping(value = "/video", method = POST)
     public ModelAndView submit(@ModelAttribute("videoCommand") @Valid Video video, BindingResult result) {
         ModelAndView view;
         if (result.hasErrors()) {
