@@ -5,6 +5,7 @@ It's all about the best crap you can find on Youtube!
 ## Getting started
 
 Run `mvn`.
+Or `./run-embedded.sh`.
 
 ## Need inspiration?
 
