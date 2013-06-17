@@ -60,9 +60,31 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     </servlet>
     <servlet-mapping>
         <servlet-name>crappy</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/crappy/*</url-pattern>
     </servlet-mapping>
     <!-- /Spring MVC -->
+
+    <!-- Spring Data REST -->
+    <servlet>
+        <servlet-name>api</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>com.github.fbiville.configuration.ApiConfiguration</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>api</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+    <!-- /Spring Data REST -->
 
     <error-page>
         <error-code>404</error-code>

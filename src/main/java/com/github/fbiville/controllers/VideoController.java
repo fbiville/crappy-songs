@@ -27,6 +27,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
+@RequestMapping("/")
 public class VideoController {
 
     private final VideosRepository videosRepository;
@@ -63,7 +64,7 @@ public class VideoController {
         else {
             Video video = get(all, new Random().nextInt(count));
             response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.addHeader("Location", "/video/" + video.getId().longValue());
+            response.addHeader("Location", "/crappy/video/" + video.getId().longValue());
         }
 
     }
@@ -81,7 +82,7 @@ public class VideoController {
         }
         else {
             videosRepository.save(video);
-            view = new ModelAndView("redirect:/");
+            view = new ModelAndView("redirect:/crappy/");
         }
         return view;
     }
