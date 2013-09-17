@@ -15,3 +15,7 @@ Or `./run-embedded.sh`.
  * http://www.youtube.com/watch?v=eliK3xp8d58
 
 ... and so much more!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fbiville/crappy-songs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
