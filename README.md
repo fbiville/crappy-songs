@@ -4,8 +4,10 @@ It's all about the best crap you can find on Youtube!
 
 ## Getting started
 
-Run `mvn`.
+Run `mvn` (optional: -Dserver.port=XXXX).
 Or `./run-embedded.sh`.
+
+And go to `localhost:XXXX/crappy/`.
 
 ## Need inspiration?
 
